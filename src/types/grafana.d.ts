@@ -1,5 +1,5 @@
 export namespace Grafana {
-    interface Dashboard {
+    export interface Dashboard {
         id: number;
         panels: object[];
         uid: string;
@@ -11,7 +11,7 @@ export namespace Grafana {
         refresh: string;
     }
 
-    interface DashboardMeta {
+    export interface DashboardMeta {
         isStarred: boolean;
         url: string;
         folderId: number;
@@ -20,7 +20,7 @@ export namespace Grafana {
     /**
      * https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/
      */
-    interface CreateDashboardRequest {
+    export interface CreateDashboardRequest {
         dashboard: Dashboard;
         folderId?: number;
         folderUid?: string;
@@ -29,10 +29,33 @@ export namespace Grafana {
         refresh?: boolean;
     }
 
+    export interface CreateFolderRequest {
+        uid?: string;
+        title: string;
+    }
+
+    /**
+     *
+     */
+    export interface Folder {
+        id: number;
+        uid: string;
+        title: string;
+        url: string;
+        hasAcl: boolean;
+        canSave: boolean;
+        canEdit: boolean;
+        canAdmin: boolean;
+        createdBy: string;
+        created: string;
+        updatedBy: string;
+        updated: string;
+        version: number;
+    }
     /**
      * https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#get-dashboard-by-uid
      */
-    interface GetDashboardResponse {
+    export interface GetDashboardResponse {
         dashboard: Dashboard;
         meta: DashboardMeta;
     }
@@ -40,7 +63,7 @@ export namespace Grafana {
     /**
      * https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/#folderdashboard-search-api
      */
-    interface SearchResponse {
+    export interface SearchResponse {
         id: number;
         uid: string;
         title: string;
@@ -58,7 +81,7 @@ export namespace Grafana {
     /**
      * https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/#folderdashboard-search-api
      */
-    interface SearchParams {
+    export interface SearchParams {
         query?: string;
         tag?: string[];
         type?: string;

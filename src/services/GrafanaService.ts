@@ -1,10 +1,12 @@
 import * as RequestService from './RequestService';
 import {Grafana} from "../types/grafana";
-import SearchResponse = Grafana.SearchResponse;
-import GetDashboardResponse = Grafana.GetDashboardResponse;
-import SearchParams = Grafana.SearchParams;
-import CreateDashboardRequest = Grafana.CreateDashboardRequest;
 import {EnvConfig} from '../config';
+import CreateFolderRequest = Grafana.CreateFolderRequest;
+import SearchResponse = Grafana.SearchResponse;
+import SearchParams = Grafana.SearchParams;
+import GetDashboardResponse = Grafana.GetDashboardResponse;
+import CreateDashboardRequest = Grafana.CreateDashboardRequest;
+import Folder = Grafana.Folder;
 
 /**
  * Will return exact object matched by name. There should be unique names so only one result.
@@ -45,7 +47,7 @@ export async function createOrUpdateDashboard(body: CreateDashboardRequest, conf
     }
 }
 
-export async function getFolderByUid(uid: string, config: EnvConfig) {
+export async function getFolderByUid(uid: string, config: EnvConfig): Promise<Folder|null> {
     try {
         return await RequestService.get(`folders/${uid}`, config);
     } catch (e: any) {
@@ -53,7 +55,7 @@ export async function getFolderByUid(uid: string, config: EnvConfig) {
         return null;
     }
 }
-export async function createFolder(body: any, config: EnvConfig) {
+export async function createFolder(body: CreateFolderRequest, config: EnvConfig): Promise<Folder> {
     try {
         return await RequestService.post(`folders`, body, config);
     } catch (e: any) {
