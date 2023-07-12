@@ -1,0 +1,23 @@
+{
+  "name": "grafana-dashboard-migration-tool",
+  "description": "A tool to migrate Grafana dashboards from one instance to another",
+  "author": {
+    "email": "vivesjulian@gmail.com",
+    "name": "Julian Vives",
+    "url": "https://github.com/Ekzer"
+  },
+  "version": "0.0.1",
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "@types/node": "^17.0.13"
+  },
+  "scripts": {
+    "build": "tsc",
+    "grafana-migration": "node src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "commander": "^11.0.0"
+  }
+}
