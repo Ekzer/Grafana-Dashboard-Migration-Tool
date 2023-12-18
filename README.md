@@ -5,7 +5,7 @@ This will copy all panels, alerts. It will create the folder to the destination 
 
 For example: from dev to staging, from staging to prod;
 
-⚠ Requires exact name match for the dashboard name for now.
+⚠ Requires exact dashboard name for now.
 
 ### Usage
 1. ```npm install```
