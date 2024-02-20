@@ -3,5 +3,3 @@ node_modules
 package-lock.json
 src/**/*.js
 .env
-src/config.ts
-
