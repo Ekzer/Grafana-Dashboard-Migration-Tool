@@ -3,6 +3,7 @@ import 'dotenv/config';
 export interface EnvConfig {
     apiKey: string;
     host: string;
+    alertsUid: Record<string, string[]>
 }
 
 declare type Config = {
@@ -13,13 +14,33 @@ declare type Config = {
  * Put your credential config here
  */
 const config: Config  = {
-    dev: {
-        apiKey: process.env.DEV_ENV_API_KEY as string,
-        host: process.env.DEV_ENV_HOST as string
+    qa: {
+        apiKey: process.env.QA_ENV_API_KEY as string,
+        host: process.env.QA_ENV_HOST as string,
+        alertsUid: {
+            fomo: ["nTf8gvZIz"]
+        }
     },
-    prod: {
-        apiKey: process.env.PROD_ENV_API_KEY as string,
-        host: process.env.PROD_ENV_HOST as string
+    stage: {
+        apiKey: process.env.STAGE_ENV_API_KEY as string,
+        host: process.env.STAGE_ENV_HOST as string,
+        alertsUid: {
+            fomo: ["fKFrjFR4k"]
+        }
+    },
+    testnet: {
+        apiKey: process.env.TESTNET_ENV_API_KEY as string,
+        host: process.env.TESTNET_ENV_HOST as string,
+        alertsUid: {
+            fomo: ["lEIQCKgVk"]
+        }
+    },
+    live: {
+        apiKey: process.env.LIVE_ENV_API_KEY as string,
+        host: process.env.LIVE_ENV_HOST as string,
+        alertsUid: {
+            fomo: ["0DQaUp9Mz", "ZWnKqf37k"]
+        }
     }
 };
 
