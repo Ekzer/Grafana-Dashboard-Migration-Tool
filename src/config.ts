@@ -1,53 +1,30 @@
 import 'dotenv/config';
+import assert from "node:assert/strict";
 
 export interface EnvConfig {
     apiKey: string;
     host: string;
-    alertsUid: Record<string, string[]>
+    alertsUids?: string[]
 }
 
-declare type Config = {
-    [env: string]: EnvConfig
-};
+export function getConfig(env: string, isDestination: boolean = false): EnvConfig {
+    const processEnv = process.env
+    const apiKey = processEnv[`${env.toUpperCase()}_ENV_API_KEY`]
+    assert.ok(!!apiKey, `Env variable API_KEY for env ${env} was not set`)
 
-/**
- * Put your credential config here
- */
-const config: Config  = {
-    qa: {
-        apiKey: process.env.QA_ENV_API_KEY as string,
-        host: process.env.QA_ENV_HOST as string,
-        alertsUid: {
-            fomo: ["nTf8gvZIz"]
-        }
-    },
-    stage: {
-        apiKey: process.env.STAGE_ENV_API_KEY as string,
-        host: process.env.STAGE_ENV_HOST as string,
-        alertsUid: {
-            fomo: ["fKFrjFR4k"]
-        }
-    },
-    testnet: {
-        apiKey: process.env.TESTNET_ENV_API_KEY as string,
-        host: process.env.TESTNET_ENV_HOST as string,
-        alertsUid: {
-            fomo: ["lEIQCKgVk"]
-        }
-    },
-    live: {
-        apiKey: process.env.LIVE_ENV_API_KEY as string,
-        host: process.env.LIVE_ENV_HOST as string,
-        alertsUid: {
-            fomo: ["0DQaUp9Mz", "ZWnKqf37k"]
-        }
-    }
-};
+    const host = processEnv[`${env.toUpperCase()}_ENV_HOST`]
+    assert.ok(!!host, `Env variable HOST for env ${env} was not set`)
+    console.info(`Using Host: ${host}`)
 
-export function getConfig(env: string): EnvConfig {
-    const envConfig: EnvConfig = config[env];
-    if (envConfig !== undefined) {
-        return envConfig;
+    const alertsUids = processEnv[`${env.toUpperCase()}_ENV_ALERTS_UID`]?.split(",")
+    if (isDestination) {
+        console.info(`Using Alerts UIDs: ${alertsUids?.join(" ")}`)
     }
-    throw new Error(`No config found for env ${env}`);
+
+    const config: EnvConfig = {
+        apiKey,
+        host,
+        alertsUids,
+    }
+    return config;
 }

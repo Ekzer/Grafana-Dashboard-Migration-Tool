@@ -14,7 +14,7 @@ export async function createFolder(folderTitle: string | undefined, folderUid: s
     }
 }
 
-export function cleanDashboard(team: string, sourceDashboard: Grafana.GetDashboardResponse, config: EnvConfig) {
+export function cleanDashboard(sourceDashboard: Grafana.GetDashboardResponse, config: EnvConfig) {
     console.log('Cleaning dashboard...');
     let panelIdIncrementor = 1
     sourceDashboard.dashboard.panels.forEach(p => {
@@ -22,7 +22,7 @@ export function cleanDashboard(team: string, sourceDashboard: Grafana.GetDashboa
             p.panels.forEach((rp: any) => {
                 delete rp.libraryPanel
                 if (rp.alert) {
-                    rp.alert.notifications = config.alertsUid[team].map(uid => ({uid}))
+                    rp.alert.notifications = config.alertsUids?.map(uid => ({uid})) || []
                 }
                 rp.id = panelIdIncrementor
                 panelIdIncrementor++
@@ -30,7 +30,7 @@ export function cleanDashboard(team: string, sourceDashboard: Grafana.GetDashboa
         } else {
             delete p.libraryPanel
             if (p.alert) {
-                p.alert.notifications = config.alertsUid[team].map(uid => ({uid}))
+                p.alert.notifications = config.alertsUids?.map(uid => ({uid})) || []
             }
             p.id = panelIdIncrementor
             panelIdIncrementor++
