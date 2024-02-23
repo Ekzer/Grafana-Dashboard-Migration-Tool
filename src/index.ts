@@ -1,6 +1,6 @@
 import * as GrafanaService from './services/GrafanaService';
 import {program} from "commander";
-import {getConfig} from "./config";
+import {Config} from "./config";
 import * as process from 'process';
 import {Grafana} from "./types/grafana";
 import * as MigrationService from "./services/MigrationService";
@@ -11,14 +11,18 @@ async function main() {
         .requiredOption('-s, --source <env name>', 'Source grafana env name')
         .requiredOption('-d, --destination <env name>', 'Destination grafana env name')
         .requiredOption('-n, --name <dashboard name>', 'Dashboard name')
+        .option('-e, --env <file name>', 'ENV file name')
         .parse();
 
     const options = program.opts();
 
+
+    const config = new Config(options.env)
+
     console.info("----- Source Env ------")
-    const sourceEnv = getConfig(options.source);
+    const sourceEnv = config.getConfig(options.source);
     console.info("----- Destination Env ------")
-    const destEnv = getConfig(options.destination, true);
+    const destEnv = config.getConfig(options.destination, true);
     console.info("----- Dashboard ------")
     console.info(`Name: ${options.name}\n`)
 
