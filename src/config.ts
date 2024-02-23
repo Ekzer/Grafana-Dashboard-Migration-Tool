@@ -19,6 +19,7 @@ export class Config {
         const processEnv = process.env
         const apiKey = processEnv[`${env.toUpperCase()}_ENV_API_KEY`]
         assert.ok(!!apiKey, `Env variable ${env.toUpperCase()}_ENV_API_KEY is not set`)
+        console.info(`Using API Key: ${apiKey.slice(0, 10)}...`)
 
         const host = processEnv[`${env.toUpperCase()}_ENV_HOST`]
         assert.ok(!!host, `Env variable ${env.toUpperCase()}_ENV_HOST is not set`)

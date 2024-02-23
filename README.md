@@ -13,3 +13,9 @@ For example: from dev to staging, from staging to prod;
 3. ```npm run build```
 4. ```npm run grafana-migration -- --source <source-env> --destination <destination-env> --name <dashboard-name>```
 5. Example: ```npm run grafana-migration -- --source qa --destination stage --name "My Beautiful Dashboard" ```
+6. You can use anoher env file by passing the parameter `-e` or `--env` : `-e "./anotherenvfile"`
+
+### Usage CLI
+
+1. ```npm install grafana-migrations```
+2. ```grafana-migration --source qa --destination stage --name "My Beautiful Dashboard" -e '.env' ```

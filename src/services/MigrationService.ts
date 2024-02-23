@@ -15,7 +15,7 @@ export async function createFolder(folderTitle: string | undefined, folderUid: s
 }
 
 export function cleanDashboard(sourceDashboard: Grafana.GetDashboardResponse, config: EnvConfig) {
-    console.log('Cleaning dashboard...');
+    console.log('Cleaning dashboard... \n');
     let panelIdIncrementor = 1
     sourceDashboard.dashboard.panels.forEach(p => {
         if (p.type === "row") {
