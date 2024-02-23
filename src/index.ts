@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as GrafanaService from './services/GrafanaService';
 import {program} from "commander";
 import {Config} from "./config";
