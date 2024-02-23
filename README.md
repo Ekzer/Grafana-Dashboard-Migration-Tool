@@ -17,5 +17,5 @@ For example: from dev to staging, from staging to prod;
 
 ### Usage CLI
 
-1. ```npm install grafana-migrations```
+1. ```npm install -g grafana-migrations```
 2. ```grafana-migration --source qa --destination stage --name "My Beautiful Dashboard" -e '.env' ```
