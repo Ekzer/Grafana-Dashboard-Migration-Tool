@@ -11,7 +11,6 @@ export async function get(url: string, config: EnvConfig, params: any = {}) {
         });
         return data;
     } catch (e) {
-        console.error(e);
         throw e;
     }
 }
@@ -25,7 +24,6 @@ export async function post(url: string, body: any, config: EnvConfig) {
         });
         return data;
     } catch (e) {
-        console.error(e);
         throw e;
     }
 }

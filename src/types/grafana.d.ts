@@ -1,7 +1,7 @@
 export namespace Grafana {
     export interface Dashboard {
         id: number;
-        panels: object[];
+        panels: any[];
         uid: string;
         title: string;
         tags: string[];

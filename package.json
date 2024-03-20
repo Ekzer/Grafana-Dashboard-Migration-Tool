@@ -1,6 +1,10 @@
 {
   "name": "grafana-dashboard-migration-tool",
   "description": "A tool to migrate Grafana dashboards from one instance to another",
+  "bin": {
+    "grafana-migration": "bin/index.js"
+  },
+  "main": "bin/index.js",
   "author": {
     "email": "vivesjulian@gmail.com",
     "name": "Julian Vives",
@@ -13,7 +17,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "grafana-migration": "node src/index.js"
+    "grafana-migration": "node bin/index.js"
   },
   "dependencies": {
     "axios": "^1.4.0",

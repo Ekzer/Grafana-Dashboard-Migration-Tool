@@ -18,8 +18,7 @@ export async function search(params: SearchParams, config: EnvConfig) {
     try {
         return await RequestService.get(`search`, config, params) as SearchResponse[];
     } catch (e: any) {
-        console.error(e);
-        throw new Error(`No result found. params ${params}, host ${config.host}`);
+        throw new Error(`No result found. params ${JSON.stringify(params)}, host ${config.host}. Message ${e.message}`);
     }
 }
 
